@@ -1,0 +1,134 @@
+{% extends 'core/base_ru.html' %}
+{% load static %}
+
+{% block title %}{{ _('Сотрудничетво') }}{% endblock %}
+{% block content %}
+<div id="content" class="container-fluid">
+    <div class="article-wrapper row">
+        <article>
+            <div class="entry-content">
+                <div class="cooperation_all col-sm-12">
+                    <h1 style="text-align: center;"><font color="#df853a">СОТРУДНИЧЕСТВО</font></h1>
+                    <div class="line"></div>
+                    <p style="text-align: center;">PastaFamily руководствуется философией натуральной и здоровой пищи. Поэтому мы хотим предоставить потребителю полезную, натуральную и конечно же вкусную продукцию. Мы открыты для сотрудничества как для предприятий розничной торговли, так и для оптовой.<br>Мы предоставляем качественную, свежую продукцию в фирменной упаковке в кротчайшие сроки.</p>
+                </div>
+                <div class="col-sm-12 cooperation_all gray1">
+                    <h2 style="text-align: center;">Наше сотрудничество возможно в двух векторах, каждый из которых включает в себя различные типы:</h2>
+                </div>
+                <div class="col-sm-12 cooperation_all gray">
+                    <div class="first_adv col-sm-6">
+                        <h3>Оптовая продажа в фирменной упаковке 500, 450, 270 и 50 грамм, для :</h3>
+                        <ul>
+                            <li>розничных торговых точек;</li>
+                            <li>эколавок;</li>
+                            <li>магазинов спортивного питания;</li>
+                            <li>эксклюзивних магазинов;</li>
+                            <li>интернет-магазинов, и др;</li>
+                            {% for i in price1 %}
+                            <form method="get" action="{{ i.price.url }}">
+                                <button type="submit">Скачати Прайс</button>
+                            </form>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="second_adv col-sm-6">
+                        <h3>Оптовая продажа фасовкой 3 килограмма, в которой наша паста поставляется в качестве сырья для:</h3>
+                        <ul>
+                            <li>предприятий, которые занимаются изготовлением кондитерских изделий;</li>
+                            <li>для кафе, ресторанов и других учреждений в сфере питания в качестве ингредиента в различных блюдах;</li>
+                            <li>производств, магазинов, специализирующихся на изготовлении полуфабрикатов;</li>
+                            {% for i in price2 %}
+                            <form method="get" action="{{ i.price.url }}">
+                                <button type="submit">Скачати Прайс</button>
+                            </form>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="cooperation_all  advanced col-sm-12">
+                    <div class="coop_title">ПОЧЕМУ С НАМИ ВЫГОДНО?</div>
+                    <div class="col-sm-4">
+                        <span class="title_line">ОПТОВИКАМ</span>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <span class="title_line">ДИСТРИБЬЮТОРАМ</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/1.png' %}">
+                        <span class="first_line">ВЫСОКАЯ МАРЖИНАЛЬНОСТЬ</span>
+                        <span class="second_line">от 18%</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/4.jpg' %}">
+                        <span class="first_line">ДОГОВОРИМСЯ!</span>
+                        <span class="second_line">Гибкая политика сотрудничества</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/5.png' %}">
+                        <span class="first_line">МИНИМАЛЬНЫЙ ЗАКАЗ</span>
+                        <span class="second_line">всего от 5 тис. грн.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/2.png' %}">
+                        <span class="first_line">НЕБОЛЬШИЕ ОБЪЕМЫ</span>
+                        <span class="second_line">всего от 30 единиц</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/3.png' %}">
+                        <span class="first_line">БЕСПЛАТНАЯ ДОСТАВКА</span>
+                        <span class="second_line">по городу Киев и пригороду</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/6.png' %}">
+                        <span class="first_line">СКИДКИ + БОНУСЫ</span>
+                        <span class="second_line">скидки до 30% + денежные бонусы</span>
+                    </div>
+                </div>
+                <div class="cooperation_all col-sm-12">
+                    <div class="coop_title cooperation_all gray"><img src="{% static '/assets/img/business.png' %}" alt="">КАК НАЧАТЬ СОТРУДНИЧЕСТВО?</div>
+                    <p>Если Вы ознакомились с нашим прайсом и у Вас есть заинтересованность во взаимовыгодном сотрудничестве, то дальше нужно заполнить более подробную форму, после обработки которой, мы с удовольствием свяжемся с Вами как можно быстрее.</p>
+                    <div class="col-sm-12 cooperation_all">
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                            <div class="vc_column-inner ">
+                                <div class="wpb_wrapper"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <form class="login-page-form" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="name" placeholder="Имя/Название компании" maxlength="150" minlength="4" required="" id="id_name">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="email" placeholder="Email" maxlength="254" required="" id="id_email">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="phone" placeholder="Номер телефона" minlength="6" required="" id="id_phone">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <select name="type" required="" id="id_type">
+                                        <option value="" selected="">Тип</option>
+                                        {% for type in types %}
+                                        <option value="{{ type.id }}">{{ type.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <br/>
+                                <div class="input-group field-cooperation-name required">
+                                    <select name="form" required="" id="id_form">
+                                        <option value="" selected="">Организационно-правовая форма</option>
+                                        {% for form in forms %}
+                                        <option value="{{ form.id }}">{{ form.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button class="save btn btn-default" type="submit" name="submit">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

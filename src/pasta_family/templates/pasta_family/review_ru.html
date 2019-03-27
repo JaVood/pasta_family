@@ -1,0 +1,115 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="lZIw_qwtqs6BMVMFq4bOnXI5fVShSSWHOD7Rc8tV6y7zv3-b_mb6rbYHP1_R_PnaHlwQGPt_YuEAC5wLgyKaQg==">
+    <title>Отзыв</title>
+    <link rel="shortcut icon" href="{% static '/assets/img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="description" content="Арахисовая паста для детей и взрослых в Киеве и Украине. Большой ассортимент: арахисовая паста, масло и арахис можете приобрести уже сегодня по выгодной цене!">
+    <meta name="keywords" content="">
+    <link href="{% static '/assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/site.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/page/page.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/template.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/assets/font/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso18.css" />
+
+    <style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;} .asteriskField{color: red;}</style>
+
+<body>
+{% block navbar %}
+{% include 'core/navbar_ru.html' %}
+{% endblock %}
+<div id="content" class="container-fluid">
+    <div class="row">
+        <div class="wpb_wrapper">
+            <br><br>
+            <h1>Оставьте отзыв</h1>
+            <br>
+            <div class="line"></div>
+        </div>
+        <div class="container p-t-35 p-b-80 col-sm-6 col-sm-offset-3">
+            <div class="container-fluid">
+                <div class="wpb_wrapper">
+                    <div class="row">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-group ">
+                                <label class="control-label requiredField">
+                                    Имя:
+                                    <span class="asteriskField">
+                                        *
+                                    </span>
+                                </label>
+                                <input type="text" name="name" maxlength="150" minlength="4" class="form-control" required="" id="id_name">
+                            </div>
+                            <label class="control-label ">
+                                    Купленый товар:
+                                    <span class="asteriskField">
+                                        *
+                                    </span>
+                                </label>
+                            <div class="form-group ">
+                                <select name="product" class="form-control" required="" id="id_product">
+                                    <option value="" selected="">Виберите продукт</option>
+                                    {% for product in products %}
+                                    <option value="{{ product.id }}">{{ product.product_group.name_ru }} {{ product.name_ru }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <label class="control-label ">
+                                    Ваша оценка:
+                                    <span class="asteriskField">
+                                        *
+                                    </span>
+                                </label>
+                            <div class="form-group ">
+                                <select name="rating" class="form-control" id="id_rating"><option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5" selected="">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label " >
+                                    Ваш отзыв:
+                                </label>
+                                <span class="asteriskField">
+                                        *
+                                    </span>
+                                <textarea class="form-control" cols="40" name="description" maxlength="200" required="" id="id_description" rows="10"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <input name="_honey" style="display:none" type="text">
+                                    <button class="btn btn-warning " name="submit" type="submit">
+                                        Отправить!
+                                    </button>
+                                    <br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block footer %}
+        {% include 'core/footer_ru.html' %}
+        {% endblock %}
+{% block ga %}
+        {% include "core/ga.html" with ga_tracking_id=ga_tracking_id %}
+        {% endblock ga %}
+</body>
+
+</html>

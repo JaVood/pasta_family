@@ -1,0 +1,47 @@
+{% extends 'core/base_ru.html' %}
+{% load static %}
+
+{% block title %}{{ _('Товары') }}{% endblock %}
+{% block content %}
+<div id="content" class="container-fluid">
+    <div class="row">
+        <article>
+			<br>
+			<h1><font color="#f97e05">Товары</font></h1>
+			<div class="line"></div>
+			<div class="product-category-wall wall-row">
+				<div id="wrapper" class="wide-wrap">
+					<div class="content-container no-padding">
+						<div class="col-md-12 main-wrap">
+							<div class="main-content">
+								<div class="product-categories-grid">
+									<div class="product-categories-grid-wrap clearfix">
+										<div class="product-category-wall wall-row">
+											{% for category in categories %}
+											<div class="wall-col col-sm-4 title-out height-auto product-category-wall">
+												<a href="/ru/product_group/{{ category.slug }}">
+													<div class="product-category-grid-item">
+														<div class="product-category-grid-item-wrap">
+															<div class="product-category-grid-featured-wrap">
+																<div class="product-category-grid-featured">
+																<img src="{{ MEDIA_URL }}{{ category.image.url }}" alt="IMG-PRODUCT">
+																</div>
+															</div>
+														</div>
+													</div>
+												</a>
+											</div>
+											{% endfor %}
+										</div>
+										<br>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </article>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% load static %}
+<nav class="navbar navbar-inverse" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="/ru/"></a>
+				</div>
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/ru/about">О компании</a></li>
+                        <li><a href="/ru/product_group">Товары</a></li>
+                        <li><a href="/ru/cooperation">Сотрудничество</a></li>
+                        <li><a href="/ru/delivery">Доставка и оплата</a></li>
+						<li><a href="/ru/return">Возврат товара</a></li>
+                        <li><a href="/ru/for_sportmens">Для спортсменов</a></li>
+                        <li><a href="/ru/contacts">Контакты</a></li>
+						{% with total_items=cart|length %}
+						<a href="/cart/ru" class="cart"><span class="counter">{{ total_items }}</span></a>
+						{% endwith %}
+					</ul>
+				</div>
+			</div>
+		</nav>

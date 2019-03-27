@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ _('Контакти') }}{% endblock %}
+{% block content %}
+<div id="content" class="container-fluid">
+    <div class="row">
+        <article>
+            <div class="entry-content">
+                <div class="vc_row wpb_row vc_row-fluid">
+                    <div class="contact_us col-sm-offset-3 col-sm-6">
+                        <div class="contact">
+                            <div class="wpb_wrapper" style="margin-bottom: 80px">
+                                <h1>КОНТАКТИ</h1>
+                                <div class="line"></div>
+                                <p>Якщо Ви хочете внести пропозиції, зробити зауваження або запропонувати спосіб співпраці, який відсутній в нашому списку «Співпраця», Ви можете зробити все це в один із зручних для Вас, нижчеперелічених, способів.  Ми прислухаємося, візьмемо до уваги і охоче почнемо взаємовигідну співпрацю.</p>
+                                <p><img src="{% static '/assets/img/icons8-iPhone-80.png' %}" />096-144-38-88</p>
+                                <p><img src="{% static '/assets/img//icons8-iPhone-80.png' %}" />095-744-38-88</p>
+                                <p><img src="{% static '/assets/img/email.png' %}" /><span style="color:black; font-size:20px">&nbsp;&nbsp;pastafamily.officе@gmail.com</span></p>
+                                <p><img src="{% static '/assets/img/facebook.png' %}" /><span style="color:black; font-size:20px">&nbsp;&nbsp;Pasta Family</span></p>
+                                <p><img src="{% static '/assets/img/instagram.png' %}" /><span style="color:black; font-size:20px">&nbsp;&nbsp;pasta_family</span></p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </article>
+    </div>
+<br><br>
+</div>
+{% endblock %}

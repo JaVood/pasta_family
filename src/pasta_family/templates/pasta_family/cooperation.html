@@ -1,0 +1,136 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ _('Співпраця') }}{% endblock %}
+{% block content %}
+<div id="content" class="container-fluid">
+    <div class="article-wrapper row">
+        <article>
+            <div class="entry-content">
+                <div class="cooperation_all col-sm-12">
+                    <h1 style="text-align: center;"><font color="#df853a">Співпраця</font></h1>
+                    <div class="line"></div>
+                    <p style="text-align: center;"> PastaFamily керується філософією натуральної та здорової їжі.  Тому ми хочемо надати споживачеві корисну, натуральну і звичайно ж смачну продукцію.  Ми відкриті для співпраці як для підприємств роздрібної торгівлі, так і для оптової.<br> Ми надаємо якісну, свіжу продукцію у фірмовій упаковці в найкоротші терміни.</p>
+                </div>
+                <div class="col-sm-12 cooperation_all gray1">
+                    <h2 style="text-align: center;">Наша співпраця можливе в двох векторах, кожен з яких включає в себе різні типи:</h2>
+                </div>
+                <div class="col-sm-12 cooperation_all gray">
+                    <div class="first_adv col-sm-6">
+                        <h3>Оптовий продаж у фірмовій упаковці 500, 450, 270 І 50 грам, для:</h3>
+                        <ul>
+                            <li>роздрібних торгових точок;</li>
+                            <li>еколавок;</li>
+                            <li>магазинів спортивного харчування;</li>
+                            <li>ексклюзивних магазинів;</li>
+                            <li>інтернет-магазинів, та ін;</li>
+                            {% for i in price1 %}
+                            <form method="get" action="{{ i.price.url }}">
+                                <button type="submit">Скачати Прайс</button>
+                            </form>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="second_adv col-sm-6">
+                        <h3>Оптовий продаж у фасованні 3 кілограми, в якій наша паста поставляється як сировина для:</h3>
+                        <ul>
+                            <li>підприємств, які займаються виготовленням кондитерських виробів;</li>
+                            <li>для кафе, ресторанів та інших закладів в сфері харчування як інгредієнт в різних стравах;</li>
+                            <li>виробництв, магазинів, що спеціалізуються на виготовленні напівфабрикатів;</li>
+                            {% for i in price2 %}
+                            <form method="get" action="{{ i.price.url }}">
+                                <button type="submit">Скачати Прайс</button>
+                            </form>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="cooperation_all  advanced col-sm-12">
+                    <div class="coop_title">ЧОМУ З НАМИ ВИГІДНО?</div>
+                    <div class="col-sm-4">
+                        <span class="title_line">ОПТОВИКАМ</span>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <span class="title_line">ДИСТРИБ'ЮТОРАМ</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/1.png' %}">
+                        <span class="first_line">ВИСОКА МАРЖИНАЛЬНІСТЬ</span>
+                        <span class="second_line">від 18%</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/4.jpg' %}">
+                        <span class="first_line">ДОМОВИМОСЬ!</span>
+                        <span class="second_line">Гнучка політика співпраці</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/5.png' %}">
+                        <span class="first_line">МІНІМАЛЬНЕ ЗАМОВЛЕННЯ</span>
+                        <span class="second_line">всього від 5 тис. грн.</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/2.png' %}">
+                        <span class="first_line">НЕВЕЛИКІ ОБСЯГИ</span>
+                        <span class="second_line">всього від 30 одиниць</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/3.png' %}">
+                        <span class="first_line">БЕЗКОШТОВНА ДОСТАВКА</span>
+                        <span class="second_line">по місту Київ і передмісті</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <img src="{% static '/assets/img/6.png' %}">
+                        <span class="first_line">ЗНИЖКИ + БОНУСИ</span>
+                        <span class="second_line">знижки до 30% + грошові бонуси;</span>
+                    </div>
+                </div>
+                <div class="cooperation_all col-sm-12">
+                    <div class="coop_title cooperation_all gray"><img src="{% static '/assets/img/business.png' %}" alt="">ЯК ПОЧАТИ СПІВПРАЦЮ?</div>
+                    <p>Якщо Ви ознайомилися з нашим прайсом і у Вас є зацікавленість у взаємовигідній співпраці, то далі потрібно заповнити більш детальну форму, після обробки якої, ми із задоволенням зв'яжемося з Вами якомога швидше.</p>
+                    <div class="col-sm-12 cooperation_all">
+                        <div class="wpb_column vc_column_container vc_col-sm-3">
+                            <div class="vc_column-inner ">
+                                <div class="wpb_wrapper"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <form class="login-page-form" method="POST">
+                                {% csrf_token %}
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="name" placeholder="Ім'я/Назва компанії" maxlength="150" minlength="4" required="" id="id_name">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="email" placeholder="Email" maxlength="254" required="" id="id_email">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <input type="text" name="phone" placeholder="Номер телефону" minlength="6" required="" id="id_phone">
+                                </div>
+                                <div class="input-group field-cooperation-name required">
+                                    <select name="type" required="" id="id_type">
+                                        <option value="" selected="">Тип</option>
+                                        {% for type in types %}
+                                        <option value="{{ type.id }}">{{ type.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <br/>
+                                <div class="input-group field-cooperation-name required">
+                                    <select name="form" required="" id="id_form">
+                                        <option value="" selected="">Організаційно-правова форма</option>
+                                        {% for form in forms %}
+                                        <option value="{{ form.id }}">{{ form.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <button class="save btn btn-default" type="submit" name="submit">Відправити</button>
+                            </form>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
+{% endblock %}

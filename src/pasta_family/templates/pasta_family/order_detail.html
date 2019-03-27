@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ _('Статус замовлення') }}{% endblock %}
+{% block content %}
+<div id="content" class="container-fluid">
+    <div class="row">
+        {% if order == None %}
+        <div class="wpb_wrapper">
+            <h1>Такого замовлення не існує</h1>
+            <div class="line"></div>
+        </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        {% else %}
+        <div class="wpb_wrapper">
+            <br>
+            <h1>Ваше замовлення</h1>
+            <div class="line"></div>
+        </div>
+        <div class="contact_us col-sm-6 col-sm-offset-3">
+            <p>Номер замовлення: {{ order.id }}<br/>
+            <div class="line"></div>
+            <p>Спосіб доставки: {{ order.delivery.name_ua }}<br/>
+            <div class="line"></div>
+            {% if order.delivery.id == 1 %}
+            <p>Місто: {{ order.nova_city.city }}<br/>
+            <div class="line"></div>
+            <p>Відділення: {{ order.nova_warehouse.title }}<br/>
+            <div class="line"></div>
+            {% else %}
+            <p>Місто: {{ order.city }}<br/>
+            <div class="line"></div>
+            <p>Адресс: {{ order.address }}<br/>
+            <div class="line"></div>
+            <p>Поштовий індекс: {{ order.postal_code }}<br/>
+            <div class="line"></div>
+            {% endif %}
+            <p>Номер декларації: {{ order.declaration }}<br/>
+            <div class="line"></div>
+            <p>Статус замовлення: <font color="red">{{ order.order_status.name_ua }}</font><br/>
+            <div class="line"></div>
+            {% if order.delivery.id == 1 %}
+            <div id="np-tracking" class="np-w-br-12" style="background-color: rgb(255, 255, 255); left: 35%;"> <div id="np-first-state"> <div id="np-tracking-logo"></div> <div id="np-title"> <div class="np-h1"> <span class="np-h1-span1">ВІДСТЕЖЕННЯ</span> <br> <span class="np-h1-span2">ПОСИЛОК</span> </div> </div> <div id="np-input-container"> <div id="np-clear-input"></div> <input id="np-user-input" type="text" name="number" placeholder="Номер посилки"> </div> <div id="np-warning-message"></div> <button id="np-submit-tracking" type="button" disabled="" style="background-color: rgb(209, 213, 218); border: 1px solid rgb(196, 196, 196);"> <span id="np-text-button-tracking">ВІДСТЕЖИТИ</span> <div id="np-load-image-tracking"></div> </button> <div id="np-error-status"></div> </div> <div id="np-second-state"> <div id="np-status-icon"></div> <div id="np-status-message"></div> <div class="np-track-mini-logo"> <div class="np-line-right"></div> <div class="np-line-left"></div> </div> <a href="#" id="np-more">Детальніше на сайті</a> <div id="np-return-button"> <span id="np-return-button-span">Інша посилка</span> </div> </div> </div>
+            {% endif %}
+        </div>
+
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,256 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="lZIw_qwtqs6BMVMFq4bOnXI5fVShSSWHOD7Rc8tV6y7zv3-b_mb6rbYHP1_R_PnaHlwQGPt_YuEAC5wLgyKaQg==">
+    <title>Оформление заказа</title>
+    <link rel="shortcut icon" href="{% static '/assets/img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="description" content="Арахисовая паста для детей и взрослых в Киеве и Украине. Большой ассортимент: арахисовая паста, масло и арахис можете приобрести уже сегодня по выгодной цене!">
+    <meta name="keywords" content="">
+    <link href="{% static '/assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/site.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/page/page.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/template.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/assets/font/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+
+
+<body>
+{% block navbar %}
+{% include 'core/navbar_ru.html' %}
+{% endblock %}
+<div id="content" class="container-fluid">
+    <div class="row">
+        <div class="wpb_wrapper">
+            <br><br>
+            <h1>Оформление заказа</h1>
+            <br>
+            <div class="line"></div>
+        </div>
+
+        <div class="container p-t-35 p-b-80">
+            <div class="container-fluid">
+                <div class="wpb_wrapper">
+                    <div class="row">
+                        <h2><font color="#df853a">Ваш заказ:</font></h2>
+                            {% for item in cart  %}
+                        <font color="#555555">
+                            <li>
+                                {{ item.product.product_group.name_ru }} {{ item.product.name_ru }} | Количество: {{ item.quantity }} | Цена: {{ item.total_price }}
+                            </li>
+                        </font>
+                            {% endfor %}
+                        <p><strong><font color="#555555">Всього:</font></strong><font color="#555555"> {{ cart.get_total_price_after_discount|floatformat:"2"}} грн.</font></p>
+                        <br><br>
+                        <form action="." method="post">
+                            <div class="form-group col-sm-6 col-sm-offset-3" >
+                                <label class="control-label requiredField" for="id_name">
+                                    <font color="#555555">Имя и Фамилия:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" name="name" type="text" maxlength="50" required="" id="id_name"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3 ">
+                                <label class="control-label requiredField" for="id_email">
+                                    <font color="#555555">Електронный адрес:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" name="email" type="text" maxlength="254" required="" id="id_email"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3 ">
+                                <label class="control-label requiredField" for="id_phone_number">
+                                    <font color="#555555">Номер телефона(без пробелов):</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" type="text" name="phone_number" maxlength="17" required="" id="id_phone_number"/>
+                                </div>
+                            </div>
+                            
+
+                            <div class="form-group col-sm-6 col-sm-offset-3">
+                                <label class="control-label " for="id_delivery">
+                                    <font color="#555555">Способ доставки:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <select class="select" name="delivery" required="" id="id_delivery" onchange="showDiv(this)">
+                                    <option value="" selected="">Виберите способ доставки</option>
+                                    {% for delivery in deliveries %}
+                                    <option value="{{ delivery.id }}">{{ delivery.name_ru }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!--Укрпошта-->
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div3" style="display:none;">
+                                <label class="control-label requiredField" for="id_city">
+                                    <font color="#555555">Город:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" type="text" name="city" maxlength="100" id="id_city"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div4" style="display:none;">
+                                <label class="control-label requiredField" for="id_address">
+                                    <font color="#555555">Адрес(улица, дом/квартира):</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" type="text" name="address" maxlength="250" id="id_address"/>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div5" style="display:none;">
+                                <label class="control-label requiredField" for="id_postal_code">
+                                    <font color="#555555">Поштовый индекс:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <div class="input-group">
+                                <input class="form-control" type="text" name="postal_code" maxlength="20" id="id_postal_code"/>
+                                </div>
+                            </div>
+
+                            <!--Нова пошта-->
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div" style="display:none;">
+                                <label class="control-label" for="id_area">
+                                    <font color="#555555">Область:</font>
+                                </label>
+                                <select class="select" name="area" id="id_area">
+                                    <option value="" selected="">Виберите область</option>
+                                    {% for area in areas %}
+                                    <option value="{{ area.id }}">{{ area }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div1" style="display:none;">
+                                <label class="control-label" for="id_nova_city">
+                                    <font color="#555555">Город:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <select class="select chained-fk" name="nova_city" id="id_nova_city" data-chainfield="area" data-url="/chaining/filter/novaposhta/City/area_id/orders/Order/nova_city" data-value="null" data-auto_choose="true" data-empty_label="--------" class="chained-fk">
+                                    <option value="">--------</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3" id="hidden_div2" style="display:none;">
+                                <label class="control-label" for="id_nova_warehouse">
+                                    <font color="#555555">Отделение:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <select class="select chained-fk" name="nova_warehouse" id="id_nova_warehouse" data-chainfield="nova_city" data-url="/chaining/filter/novaposhta/Warehouse/city_id/orders/Order/nova_warehouse" data-value="null" data-auto_choose="true" data-empty_label="--------" class="chained-fk">
+                                    <option value="">--------</option>
+                                </select>
+                            </div>
+<div class="form-group col-sm-6 col-sm-offset-3 ">
+                                <label class="control-label requiredField" for="id_payment_method">
+                                    <font color="#555555">Способ оплаты:</font>
+                                    <span class="asteriskField">
+                                        <font color="#555555">*</font>
+                                    </span>
+                                </label>
+                                <select class="select" name="payment_method" required="" id="id_payment_method">
+                                    <option value="" selected="">Виберите способ оплаты</option>
+                                    {% for payment in payments %}
+                                    <option value="{{ payment.id }}">{{ payment.name_ru }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>                            
+<div class="form-group col-sm-6 col-sm-offset-3 ">
+                                <label class="control-label " for="id_message">
+                                    <font color="#555555">Коментарий к заказу:</font>
+                                </label>
+                                <div class="input-group">
+                                <textarea class="form-control" cols="40"  type="text" name="message" maxlength="250" id="id_message" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6 col-sm-offset-3 ">
+                            <input type="checkbox" name="call_back" id="id_call_back"><font color="#555555"> Не звоните мне, данные введены верно.</font>
+                            </div>
+                            {% csrf_token %}
+                            <div class="form-group col-sm-6 col-sm-offset-3">
+                                <div>
+                                    <input name="_honey" style="display:none" type="text"/>
+                                    <button class="btn btn-warning " name="submit" type="submit">
+                                        Подтвердить!
+                                    </button>
+                                    <br>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static '/smart-selects/admin/js/chainedfk.js' %}"></script>
+    <script type="text/javascript" src="{% static '/smart-selects/admin/js/bindfields.js' %}"></script>
+    <script src="{% static '/assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static '/assets/js/wow.min.js' %}"></script>
+        <script src="{% static '/assets/js/retina-1.1.0.min.js' %}"></script>
+        <script src="{% static '/assets/js/scripts.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+function showDiv(select){
+   if(select.value==1){
+    document.getElementById('hidden_div').style.display = "block";
+    document.getElementById('hidden_div1').style.display = "block";
+    document.getElementById('hidden_div2').style.display = "block";
+   } else {
+    document.getElementById('hidden_div').style.display = "none";
+    document.getElementById('hidden_div1').style.display = "none";
+    document.getElementById('hidden_div2').style.display = "none";
+   }
+   if(select.value==2){
+    document.getElementById('hidden_div3').style.display = "block";
+    document.getElementById('hidden_div4').style.display = "block";
+    document.getElementById('hidden_div5').style.display = "block";
+   } else {
+    document.getElementById('hidden_div3').style.display = "none";
+    document.getElementById('hidden_div4').style.display = "none";
+    document.getElementById('hidden_div5').style.display = "none";
+   }
+}
+</script>
+{% block footer %}
+{% include 'core/footer_ru.html' %}
+{% endblock %}
+{% block ga %}
+{% include "core/ga.html" with ga_tracking_id=ga_tracking_id %}
+{% endblock ga %}
+</body>
+</html>
+
+
+
+

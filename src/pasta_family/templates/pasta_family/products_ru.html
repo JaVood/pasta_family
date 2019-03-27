@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="lZIw_qwtqs6BMVMFq4bOnXI5fVShSSWHOD7Rc8tV6y7zv3-b_mb6rbYHP1_R_PnaHlwQGPt_YuEAC5wLgyKaQg==">
+    <title>{{ product_group.name_ru }}</title>
+    <link rel="shortcut icon" href="{% static '/assets/img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="description" content="Арахисовая паста для детей и взрослых в Киеве и Украине. Большой ассортимент: арахисовая паста, масло и арахис можете приобрести уже сегодня по выгодной цене!">
+    <meta name="keywords" content="">
+    <link href="{% static '/assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/site.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/template.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/page/page.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/assets/font/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/vendor/slick/slick.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static '/assets/css/main.css' %}">
+
+</head>
+<body>
+{% block navbar %}
+    {% include 'core/navbar_ru.html' %}
+    {% endblock %}
+	<section class="bgwhite p-t-55 p-b-65">
+		<div class="container">
+			<div class="row">
+				<h1>{{ product_group.name_ru }}</h1>
+                <br>
+				<div class="line"></div>
+					
+						{% for product in products %}
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+							<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative">
+{% if product.availability %}
+<a class="badge badge-success text-white" style="font-size: 18px; background-color: #DF853A">{{ product.price }} грн.</a>
+                                                                        {% else %}
+                                                                        <a class="badge badge-success text-white" style="font-size: 18px; background-color: #DF853A">Нет в наличии</a>
+                                                                        {% endif %}
+									<a href="/ru/product_group/{{ product_group.slug }}/{{ product.slug }}/">
+									<img src="{{ MEDIA_URL }}{{ product.image_main.url }}" alt="IMG-PRODUCT">
+									</a>
+										<a href="/ru/product_group/{{ product_group.slug }}/{{ product.slug }}/" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+								</div>
+								<div class="block2-txt p-t-20">
+									<a href="/ru/product_group/{{ product_group.slug }}/{{ product.slug }}/" class="block2-name dis-block s-text3 p-b-5">
+										{{ product.product_group.name_ru }} {{ product.name_ru }}
+									</a>
+								</div>
+							</div>
+						</div>
+						</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		
+	</section>
+	{% block footer %}
+    {% include 'core/footer2_ru.html' %}
+    {% endblock %}
+	{% block ga %}
+        {% include "core/ga.html" with ga_tracking_id=ga_tracking_id %}
+        {% endblock ga %}
+
+<script src="{% static '/assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static '/assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static '/assets/js/wow.min.js' %}"></script>
+        <script src="{% static '/assets/js/retina-1.1.0.min.js' %}"></script>
+        <script src="{% static '/assets/js/scripts.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	    <script type="text/javascript" src="{% static '/assets/vendor/animsition/js/animsition.min.js' %}"></script>
+
+
+	<script type="text/javascript" src="{% static '/assets/vendor/slick/slick.min.js' %}"></script>
+
+	<script type="text/javascript" src="{% static '/assets/js/slick-custom.js' %}"></script>
+	<script type="text/javascript" src="{% static '/assets/vendor/sweetalert/sweetalert.min.js' %}"></script>
+	<script src="{% static '/assets/js/main.js' %}"></script>
+
+</body>
+</html>

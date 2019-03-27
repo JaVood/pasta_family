@@ -1,0 +1,14 @@
+*.py[cod]
+/static/
+/media/
+.idea/
+*.coverage
+__pycache__
+pasta_family/__pycache__
+core/__pycache__
+venv/
+env/
+settings_local.py
+src/pasta_family/migrations/
+.DS_Store
+Icon?

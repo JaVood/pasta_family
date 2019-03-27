@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-param" content="_csrf-frontend">
+    <meta name="csrf-token" content="lZIw_qwtqs6BMVMFq4bOnXI5fVShSSWHOD7Rc8tV6y7zv3-b_mb6rbYHP1_R_PnaHlwQGPt_YuEAC5wLgyKaQg==">
+    <title>Форма</title>
+    <link rel="shortcut icon" href="{% static '/assets/img/favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta name="description" content="Арахисовая паста для детей и взрослых в Киеве и Украине. Большой ассортимент: арахисовая паста, масло и арахис можете приобрести уже сегодня по выгодной цене!">
+    <meta name="keywords" content="">
+    <link href="{% static '/assets/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/site.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/page/page.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/css/template.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/assets/font/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+
+
+
+</head>
+    <body>
+
+        {% block navbar %}
+        {% include 'core/navbar.html' %}
+        {% endblock %}
+        <div id="content" class="container-fluid">
+            <div class="article-wrapper row">
+
+                {% if order.payment_method_id != 1 %}
+                <article>
+                    <div class="entry-content">
+                        <div class="cooperation_all col-sm-12">
+                            <h1 style="text-align: center;"><font color="#df853a">Ваше замовлення успішно відправлено, очікуйте електронно листа з деталями</font></h1>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </article>
+                {% else %}
+
+                <article>
+                    <div class="entry-content">
+                        <div class="cooperation_all col-sm-12">
+                            <h1 style="text-align: center;"><font color="#df853a">Ваше замовлення успішно відправлено, перейдіть по посиланню нижче, щоб провести оплату.</font></h1>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </article>
+                <form method="post" action="https://www.liqpay.ua/api/3/checkout/" accept-charset="utf-8">
+                    <input type="hidden" name="data" value="{{ data }}"/>
+                    <input type="hidden" name="signature" value="{{ signature }}"/>
+                    <input type="image" src="//static.liqpay.ua/buttons/p1ru.radius.png" name="btn_text" />
+                </form>
+                {% endif %}
+            </div>
+        </div>
+        {% block ga %}
+        {% include "core/ga.html" with ga_tracking_id=ga_tracking_id %}
+        {% endblock ga %}
+       <script src="{% static '/assets/js/jquery-1.11.1.js' %}"></script>
+        <script src="{% static '/assets/js/jquery.backstretch.min.js' %}"></script>
+        <script src="{% static '/assets/js/wow.min.js' %}"></script>
+        <script src="{% static '/assets/js/retina-1.1.0.min.js' %}"></script>
+        <script src="{% static '/assets/js/scripts.js' %}"></script>
+        <script src="{% static '/assets/js/index.js' %}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="{% static '/assets/js/jquery.js' %}"></script>
+        <script src="{% static '/assets/bootstrap/js/bootstrap.js' %}"></script>
+        <script src="{% static '/assets/js/init.js' %}"></script>
+        <script src="{% static '/assets/js/jquery-1.11.1.min.js' %}"></script>
+        <script src="{% static '/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    </body>
+
+</html>
